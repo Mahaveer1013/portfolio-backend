@@ -11,11 +11,6 @@
         "src": "/api/(.*)",
         "dest": "/api/$1"
       }
-    ],
-    "env": {
-      "FIREBASE_PROJECT_ID": "@FIREBASE_PROJECT_ID",
-      "FIREBASE_PRIVATE_KEY": "@FIREBASE_PRIVATE_KEY",
-      "FIREBASE_CLIENT_EMAIL": "@FIREBASE_CLIENT_EMAIL"
-    }
+    ]
   }
   

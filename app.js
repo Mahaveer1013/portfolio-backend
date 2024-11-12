@@ -27,7 +27,7 @@ dotenv.config();
 
 const getIpInfo = async (ip) => {
     try {
-        const response = await axios.get(`https://ipinfo.io/${ip}/json?token=${process.env.IPINFO_API_TOKEN}`);
+        const response = await axios.get(`https://ipinfo.io/${ip}/json?token=b6d3e971852ca4`);
         return response.data;
     } catch (error) {
         console.error('Error fetching IP info:', error);
@@ -73,6 +73,10 @@ app.post('/api/visitor', async (req, res) => {
         return res.status(500).json({ message: 'Error storing visitor details' });
     }
 });
+
+app.get("/", (req, res) => {
+    res.send("backend for https://mahaveer1013.vercel.app")
+})
 
 app.get('/api/total-visitors', async (req, res) => {
     try {

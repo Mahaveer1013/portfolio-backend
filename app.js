@@ -3,18 +3,21 @@ const admin = require('firebase-admin');
 const dotenv = require('dotenv');
 const axios = require('axios');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 
 dotenv.config(); 
 
 const app = express();
 
-admin.initializeApp({
-    credential: admin.credential.cert({
-        project_id: process.env.FIREBASE_PROJECT_ID,
-        private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-        client_email: process.env.FIREBASE_CLIENT_EMAIL,
-    }),
-});
+if (admin.apps.length === 0) {
+    admin.initializeApp({
+        credential: admin.credential.cert({
+            project_id: process.env.FIREBASE_PROJECT_ID,
+            private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            client_email: process.env.FIREBASE_CLIENT_EMAIL,
+        }),
+    });
+}
 
 const firestore = admin.firestore();
 

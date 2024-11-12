@@ -17,13 +17,7 @@ const firestore = admin.firestore();
 
 const app = express();
 
-
-app.use(cors({
-    origin: ['http://localhost:3000', 'https://mahaveer1013.vercel.app'],
-    methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS method
-    allowedHeaders: ['Content-Type', 'Authorization'], // Make sure all required headers are allowed
-    credentials: true, // Allow cookies to be sent with requests
-}));
+app.use(cors());
 
 app.use(express.json());
 
@@ -32,7 +26,6 @@ const getIpInfo = async (ip) => {
         const response = await axios.get(`https://ipinfo.io/${ip}/json?token=b6d3e971852ca4`);
         return response.data;
     } catch (error) {
-        console.error('Error fetching IP info:', error);
         return null;
     }
 };

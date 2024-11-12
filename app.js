@@ -17,13 +17,15 @@ const firestore = admin.firestore();
 
 const app = express();
 
-app.use(express.json());
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://mahaveer1013.vercel.app']
+    origin: ['http://localhost:3000', 'https://mahaveer1013.vercel.app'],
+    methods: ['GET', 'POST', 'OPTIONS'], // Include OPTIONS method
+    allowedHeaders: ['Content-Type', 'Authorization'], // Make sure all required headers are allowed
+    credentials: true, // Allow cookies to be sent with requests
 }));
 
-dotenv.config();
+app.use(express.json());
 
 const getIpInfo = async (ip) => {
     try {

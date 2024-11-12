@@ -27,7 +27,9 @@ const app = express();
 app.use(globalRateLimiter);
 
 app.use(cors({
-    origin: true
+    origin: true,  // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());

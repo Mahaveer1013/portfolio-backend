@@ -13,10 +13,9 @@
       }
     ],
     "env": {
-      "FIREBASE_PROJECT_ID": "@firebase_project_id",
-      "FIREBASE_PRIVATE_KEY": "@firebase_private_key",
-      "FIREBASE_CLIENT_EMAIL": "@firebase_client_email",
-      "IPINFO_API_TOKEN": "@ipinfo_api_token"
+      "FIREBASE_PROJECT_ID": "@FIREBASE_PROJECT_ID",
+      "FIREBASE_PRIVATE_KEY": "@FIREBASE_PRIVATE_KEY",
+      "FIREBASE_CLIENT_EMAIL": "@FIREBASE_CLIENT_EMAIL"
     }
   }
   

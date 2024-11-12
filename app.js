@@ -26,7 +26,7 @@ const globalRateLimiter = rateLimit({
 });
 
 app.use(cors({
-    origin: true,  // Allow all origins
+    origin: '*',  // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));

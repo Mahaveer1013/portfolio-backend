@@ -4,7 +4,10 @@ const dotenv = require('dotenv');
 const axios = require('axios');
 const cors = require('cors');
 
-dotenv.config();
+dotenv.config(); 
+
+const app = express();
+
 admin.initializeApp({
     credential: admin.credential.cert({
         project_id: process.env.FIREBASE_PROJECT_ID,
@@ -22,15 +25,14 @@ const globalRateLimiter = rateLimit({
     headers: true,
 });
 
-const app = express();
-
-app.use(globalRateLimiter);
-
 app.use(cors({
     origin: true,  // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.use(globalRateLimiter);
+
 
 app.use(express.json());
 

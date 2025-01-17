@@ -76,8 +76,8 @@ app.post('/api/visitor', async (req, res) => {
             return res.status(201).json({ message: 'Visitor details stored successfully' });
         } else {
             await visitorDoc.update({
-                count: admin.firestore.FieldValue.increment(1),
                 visitTimestamp: admin.firestore.FieldValue.serverTimestamp(),
+                count: admin.firestore.FieldValue.increment(1),
             });
             return res.status(200).json({ message: 'Visitor count incremented successfully' });
         }
@@ -97,12 +97,14 @@ app.get('/api/total-visitors', async (req, res) => {
         const querySnapshot = await visitorsCollection.get();
 
         const distinctVisitors = new Set();
+        const totalCount = 0;
         querySnapshot.forEach(doc => {
             const visitorId = doc.data().visitorId;
+            totalCount += doc.data()?.count;
             distinctVisitors.add(visitorId);
         });
 
-        return res.status(200).json({ totalVisitors: distinctVisitors.size });
+        return res.status(200).json({ totalVisitors: distinctVisitors.size, totalCount });
     } catch (error) {
         console.error('Error getting distinct visitors:', error);
         return res.status(500).json({ message: 'Error getting distinct visitors' });

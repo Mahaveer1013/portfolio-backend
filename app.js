@@ -97,7 +97,7 @@ app.get('/api/total-visitors', async (req, res) => {
         const querySnapshot = await visitorsCollection.get();
 
         const distinctVisitors = new Set();
-        const totalCount = 0;
+        let totalCount = 0;
         querySnapshot.forEach(doc => {
             const data = doc.data()
             const visitorId = data.visitorId;

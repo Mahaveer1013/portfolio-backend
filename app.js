@@ -63,7 +63,7 @@ app.post('/api/visitor', async (req, res) => {
         }
 
         const visitorsCollection = firestore.collection('visitors');
-        const visitorDoc = visitorsCollection.doc(admin.firestore.FieldValue.serverTimestamp() + visitorId);
+        const visitorDoc = visitorsCollection.doc(new Date() + visitorId);
         const docSnapshot = await visitorDoc.get();
 
         if (!docSnapshot.exists) {

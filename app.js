@@ -68,10 +68,10 @@ app.post('/api/visitor', async (req, res) => {
 
         if (!docSnapshot.exists) {
             await visitorDoc.set({
+                visitTimestamp: admin.firestore.FieldValue.serverTimestamp(),
                 visitorId: visitorId,
                 ...ipInfo,
                 count: 1,
-                visitTimestamp: admin.firestore.FieldValue.serverTimestamp(),
             });
             return res.status(201).json({ message: 'Visitor details stored successfully' });
         } else {

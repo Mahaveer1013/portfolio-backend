@@ -63,7 +63,7 @@ app.post('/api/visitor', async (req, res) => {
         }
 
         const visitorsCollection = firestore.collection('visitors');
-        const visitorDoc = visitorsCollection.doc(visitorId);
+        const visitorDoc = visitorsCollection.doc(admin.firestore.FieldValue.serverTimestamp() + visitorId);
         const docSnapshot = await visitorDoc.get();
 
         if (!docSnapshot.exists) {
@@ -99,8 +99,10 @@ app.get('/api/total-visitors', async (req, res) => {
         const distinctVisitors = new Set();
         const totalCount = 0;
         querySnapshot.forEach(doc => {
-            const visitorId = doc.data().visitorId;
-            totalCount += doc.data()?.count;
+            const data = doc.data()
+            const visitorId = data.visitorId;
+            if (data.count)
+                totalCount += data.count;
             distinctVisitors.add(visitorId);
         });
 
